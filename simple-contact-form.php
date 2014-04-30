@@ -89,7 +89,7 @@ function gCF_install()
 			");
 	}
 	
-	add_option('gCF_title', "Contact Us");
+	add_option('gCF_title', "Sign up to join the community");
 	add_option('gCF_fromemail', "admin@contactform.com");
 	add_option('my_plugin_do_activation_redirect', true);  
 	add_option('gCF_On_Homepage', "YES");
@@ -205,13 +205,13 @@ function add_app_register_page(){
 
 function gCF_add_to_menu() 
 {
-	if (is_admin()) 
-	{
-		add_options_page( __('Simple contact form', 'simple-contact-form'), 
-				__('Simple contact form', 'simple-contact-form'), 'manage_options', 'simple-contact-form', 'gCF_admin' );
-	}
+
 	add_menu_page( __( 'Simple Contact Form', 'simple-contact-form' ), __( 'Simple Contact Form', 'simple-contact-form' ), 'admin_dashboard', 'simple-contact-form', 'add_app_register_page' );
 	add_submenu_page('simple-contact-form', 'Readygraph App', __( 'Readygraph App', 'simple-contact-form' ), 'administrator', 'register-app', 'add_app_register_page');
+	if (is_admin()) 
+	{
+	  add_submenu_page('simple-contact-form', 'Settings', __( 'Settings', 'simple-contact-form' ), 'administrator', 'settings', 'gCF_admin');
+	}
 }
 
 function gCF_add_javascript_files() 

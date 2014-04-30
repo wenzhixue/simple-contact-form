@@ -52,8 +52,8 @@ if($app_id){
 
     <div class="wrap">
       <div id="icon-plugins" class="icon32"></div>
-      <h2>Email Newsletter, Now with Readygraph </h2>
-      <h3>Activate Readygraph features to optimize Email Newsletter functionality</h3>
+      <h2>Simple Contact Form, Now with Readygraph </h2>
+      <h3>Activate Readygraph features to optimize Simple Contact Form functionality</h3>
       <p style="display:none;color:red;" id="error"></p>
       <div class="register-left">
       <div class="form-wrap">
@@ -142,6 +142,7 @@ $('#signin-submit').click(function(e){
       success: function(response) {
         if(response.success)
         {
+           
           var pathname = window.location.href;
           window.location = pathname + "&app_id="+response.data.app_id;
         }else{

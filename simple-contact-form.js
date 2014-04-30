@@ -60,23 +60,23 @@ function gcfContents()
         //alert(http_req.responseText);
         if(http_req.responseText == "Invalid security code.")
         {
-            alert(http_req.responseText);
+            //alert(http_req.responseText);
             result = http_req.responseText;
             document.getElementById('gcf_alertmessage').innerHTML = result;
             document.getElementById("gcf_captcha").value = "";
         }
         else if(http_req.responseText == "Refresh the page and try again.")
         {
-            alert(http_req.responseText);
+            //alert(http_req.responseText);
             result = http_req.responseText;
             document.getElementById('gcf_alertmessage').innerHTML = result;
             document.getElementById("gcf_captcha").value = "";
         }
         else
         {
-            alert("message sent successfully");
+            //alert("message sent successfully");
             result = http_req.responseText;
-            document.getElementById('gcf_alertmessage').innerHTML = result;   
+            document.getElementById('gcf_alertmessage').innerHTML = "message sent successfully";   
             document.getElementById("gcf_email").value = "";
             document.getElementById("gcf_name").value = "";
             document.getElementById("gcf_message").value = "";
