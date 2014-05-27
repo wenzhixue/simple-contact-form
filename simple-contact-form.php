@@ -101,6 +101,7 @@ function gCF_install()
 	add_option('gCF_On_MyEmail', "youremail@simplecontactform.com");
 	add_option('gCF_On_Subject', "Simple contact form");
 	add_option('gCF_On_Captcha', "YES");
+	add_option('gCF_ReadyGraph_API', "include your api_key");
 }
 
 function gCF_widget($args) 
@@ -170,11 +171,12 @@ function gCF_admin()
 
 
 function eemail_has_app(){
-    global $wpdb;
-    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-    $data = $wpdb->get_results($cSql);
+    //global $wpdb;
+    //$cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
+	$app_key = get_option('gCF_ReadyGraph_API');
+    //$data = $wpdb->get_results($cSql);
 
-    if(count($data) > 0){
+    if(strlen($app_key)>0 && $app_key <> "include your api_key"){
         return true;
     }
     else{
@@ -183,7 +185,7 @@ function eemail_has_app(){
 }
 
 function eemail_my_app_id(){
-    global $wpdb;
+    /*global $wpdb;
     $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
     $data = $wpdb->get_results($cSql,ARRAY_A);
     
@@ -195,6 +197,15 @@ function eemail_my_app_id(){
     else{
         return false;
     }
+	*/
+	$app_key = get_option('gCF_ReadyGraph_API');
+	if(strlen($app_key)>0 && $app_key <> "include your api_key"){
+		$app_id = $app_key;
+		return $app_id;
+	}
+	else{
+		return false;
+	}
 }
 
 function add_app_register_page(){

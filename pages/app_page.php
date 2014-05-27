@@ -20,17 +20,22 @@
 
 <?php 
 global $wpdb;
-$app_id = $_GET["app_id"];
+$app_id = mysql_real_escape_string($_GET["app_id"]);
 if($app_id){
-  $sSql = "insert into ".WP_scontact_TABLE_APP." VALUES ('1', '".$app_id."') ";  
-  $data = $wpdb->get_results($sSql);
+  //$sSql = "insert into ".WP_scontact_TABLE_APP." VALUES ('1', '".$app_id."') ";  
+  //$data = $wpdb->get_results($sSql);
+  update_option('gCF_ReadyGraph_API', $app_id );
 }
 ?>
 
 <?php 
-    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-    $result = $wpdb->get_results($cSql);
-    if(count($result) > 0)
+    //$cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
+    //$result = $wpdb->get_results($cSql);
+    //if(count($result) > 0)
+	$gCF_On_App_Key = get_option('gCF_ReadyGraph_API');
+	
+	if (strlen($gCF_On_App_Key)>0){
+	if($gCF_On_App_Key <> "include your api_key")
     { 
     ?>
     <div class="wrap">
@@ -114,8 +119,8 @@ if($app_id){
           <p>-Track performace with user-activity analytics</p>
           </div>
       </div>
-    <?php } ?>
-
+    <?php } } else { add_option('gCF_ReadyGraph_API', "include your api_key");?>
+	<script> location.reload();</script> <?php }  ?>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 
